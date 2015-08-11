@@ -1,5 +1,10 @@
+%%
+% Information
+% - OSA: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
+% - Levenshtein: https://en.wikipedia.org/wiki/Levenshtein_distance
+
 %% define
-distances={'damerau','levenshtein'};%,'weighted'};
+distances={'osa','levenshtein'};%,'weighted'};
 
 sentence_a = 'smith';
 sentence_b = 'smtih';
