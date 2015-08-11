@@ -1,6 +1,6 @@
-function d=edit_distance_damerau_keylist(s,t)
-  % EDIT_DISTANCE_DAMERAU_KEYLIST calculates the Damerau-Levenshtein edit
-  % distance for cell arrays of (string) keys, e.g. 
+function d=edit_distance_osa_keylist(s,t)
+  % EDIT_DISTANCE_OSA_KEYLIST calculates the optimal string alignment (OSA)
+  % edit distance for cell arrays of (string) keys, e.g. 
   %   edit_distance_damerau_keylist({'the','quick','brown','fox'},{'the','lazy','dog'})
   %
   % This code is part of the work described in [1]. In [1], edit distances

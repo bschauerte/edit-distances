@@ -1,5 +1,6 @@
-function d=edit_distance_damerau(s,t)
-  % EDIT_DISTANCE_DAMERAU calculates the Damerau-Levenshtein edit distance.
+function [d,distance_matrix] = edit_distance_osa(s,t)
+  % EDIT_DISTANCE_OSA calculates the optimal string alignment (OSA) edit 
+  % distance.
   %
   % This code is part of the work described in [1]. In [1], edit distances
   % are applied to match linguistic descriptions that occur when referring
@@ -65,18 +66,26 @@ function d=edit_distance_damerau(s,t)
       end
       
       d(i,j)=min([ ...
-        d(i-1,j) + 1, ...     % deletion
-        d(i,j-1) + 1, ...     % insertion
-        d(i-1,j-1) + cost ... % substitution
+            d(i-1, j  ) + 1, ...   % deletion
+            d(i  , j-1) + 1, ...   % insertion
+            d(i-1, j-1) + cost ... % substitution
         ]);
       
-      if (i-1)>1 && (j-1)>1 && s((i-1))==t((j-1)-1) && s((i-1)-1) == t(j-1)
+%       if (i-1)>1 && (j-1)>1 && s((i-1))==t((j-1)-1) && s((i-1)-1) == t(j-1)
+%         d(i,j) = min([ ... % transposition
+%           d(i,j), ...
+%           d(i-2,j-2) + cost, ...
+%           ]);
+      if (i-1) > 1 && (j-1) > 1 && ...
+              s((i)   - 1) == t((j-1) - 1) && ...
+              s((i-1) - 1) == t((j)   - 1)
         d(i,j) = min([ ... % transposition
-          d(i,j), ...
-          d(i-2,j-2) + cost, ...
+              d(i,j), ...
+              d(i-2,j-2) + cost, ...
           ]);
       end
     end
   end
   
+  distance_matrix = d;
   d=d(m+1,n+1);
